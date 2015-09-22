@@ -4,7 +4,11 @@ app = Flask(__name__)
 
 # define the directory for the app
 @app.route("/about")
-def aboutpage():
+def about():
+    return render_template("about.html")
+
+@app.route("/oldabout")
+def oldaboutpage():
     page = """
     <h1> About</h1>
     <br>
