@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<center>
+
+<head>
+<h1> Home Page </h1>
+<hr/>
+{% for item in args %}
+<h2> {{item}} : {{args[item]}} </h2>
+{% endfor %}
+<hr />
+Out of Form
+Outname : <input type="text" name="outname">
+
+</head>
+
+<body>
+</body>
+
+</center>
+
+</html>

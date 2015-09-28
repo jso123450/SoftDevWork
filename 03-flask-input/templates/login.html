@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+
+<center>
+
+<head>
+<h1> Login </h1>
+{% if error %}
+<h2>{{error}}</h2>
+{% endif %}
+
+<form method="post">
+  Username: <input type="text" name="password">
+  <p>
+    Password: <input type="text" name="password">
+    <p>
+      <input type="submit" name="button" value="login">
+      <p>
+	<input type="submit" name="button" value="cancel">
+</form>
+
+</head>
+
+<body>
+</body>
+
+</center>
+
+</html>
