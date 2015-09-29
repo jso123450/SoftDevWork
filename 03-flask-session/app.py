@@ -4,19 +4,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "hello"
+    return render_template("index.html")
 
-@app.route("/login")
+@app.route("/login",methods=["GET","POST"])
 def login():
-    return "hello"
+    if request.method="GET":
+        return render_template("login.html")
+    else:
+        un = request.form["username"]
+        pw = request.form["password"]
 
 @app.route("/about")
 def about():
-    return "hello"
+    return render_template("about.html")
 
 @app.route("/secret")
 def secret():
-    return "hello"
+    return render_template("secret.html")
 
 if __name__ == "__main__":
     app.debug = True
