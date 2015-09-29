@@ -11,15 +11,15 @@ def login():
         button = request.form["button"]
         uname = request.form["username"]
         pword = request.form["password"]
-        print request.form
-        if button="cancel":
+        #print request.form
+        if button=="cancel":
             return render_template("login.html")
         # if we're here we should have a username and password
         if utils.authenticate(uname,pword):
             return "YOU'RE IN"
         else:
             error = "INVALID USERNAME AND/OR PASSWORD"
-            return render_template("login.html",error)
+            return render_template("login.html",error=error)
 
 @app.route("/")
 def index():
