@@ -2,53 +2,30 @@
 
 <html>
 
-<center>
+  <center>
 
-<head>
-<h1> Artist Page </h1>
-{% if stagename != "artists" %}
-<h2> Stage Name: {{stagename}} </h2>
-{% else %}
-<h2> Artists </h2>
-{% endif %}
-<!-- <h3> hello {{dic[stagename]}} </h3> -->
-</head>
+    <head>
+      {% if un %}
+      <h1> Welcome, {{un}}! </h1>
+      <hr/>
+      {% endif %}
+      <h1>Your Lucky Number : {{random}} </h1>
+    <br>
+    <br>
+    <br>
+      <h2> Not Lucky Enough? </h2>
+      <h3> Well then... You should <a href=https://www.youtube.com/watch?v=5NV6Rdv1a3I> Get Lucky </a></h3>
+    <br>
+      <h4> Disclaimer: You may not necessarily "get lucky" if you're that unlucky :( </h4>
+    <br>
+    <br>
+      <a href=".."> Back to Home! </a>
+    
+    </head>
 
-<body>
-<style>
-ul { display:table; margin:0 auto;}
-</style>
+    <body>
+    </body>
 
-{% if stagename!="artists" %}
-<ul>
-{% for item in dic[stagename] %}
-<li> {{item}} </li>
-{% endfor %}
-</ul>
-{% endif %}
-
-{% if stagename=="artists" %}
-<form method="POST">
-  <ul>
-    {% for item in dic[stagename] %}
-    <li> <input type="submit" name="button" value={{item}}> </li>
-    {% endfor %}
-  </ul>
-</form>
-{% endif %}
-
-
-<br>
-<br>
-{% if stagename != "artists" %}
-<a href=""> Back to Artist List! </a>
-{% endif %}
-<br>
-<br>
-<a href=".."> Back to Home! </a>
-
-</body>
-
-</center>
+  </center>
 
 </html>

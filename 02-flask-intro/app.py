@@ -6,45 +6,62 @@ app = Flask(__name__)
 @app.route("/login",methods=["GET","POST"])
 def login():
     if request.method=="GET":
-        return render_template("login.html")
+        if 'un' in session and session['un'] != 0:
+            user = session['un']
+            return render_template("login.html",un=user)
+        else:
+            return render_template("login.html",unlogged="You are not currently logged in.")
     else:
         button = request.form['button']
-        un = request.form['username']
-        pw = request.form['password']
-        if button="logout":
+        user = request.form['username']
+        passwd = request.form['password']
+        if button=="logout":
             session['un'] = 0
             session['pw'] = 0
-            return render_template("login.html")
+            return render_template("home.html")
         else:
-            if utils.loginauth(un,pw):
-                session['un'] = un
-                session['pw'] = pw
+            if utils.loginauth(user,passwd):
+                session['un'] = user
+                session['pw'] = passwd
                 return redirect(url_for("home"))
             else:
                 error = "INVALID USERNAME AND/OR PASSWORD"
                 return render_template("login.html",error=error)
+                #url_for only takes 1 arg
+                #return redirect(url_for("error",error))
+
+#@app.route("/error")
+#def error(error):
+#    return render_template("error.html",error)
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    if 'un' in session and session['un'] != 0:
+        user = session['un']
+        return render_template("about.html",un=user)
+    else:
+        return render_template("about.html")
 
 @app.route("/lucky")
-def lucky_number():
+def lucky():
     import random
     r = random.randrange(1,100)
-    return render_template("lucky.html",random=r)
+    if 'un' in session and session['un'] != 0:
+        user = session['un']
+        return render_template("lucky.html",random=r,un=user)
+    else:
+        return render_template("lucky.html",random=r)
 
 @app.route("/artist/",methods=["GET","POST"])
 #@app.route("/artist/<name>",methods=["GET","POST"])
 def artist(name=""):
-    if 'un' not in session:
-        error = "You are not logged in"
+    if 'un' not in session or session['un']==0:
         return redirect(url_for("home"))
         #return render_template("home.html",error=error)
     d = utils.returnd()
     d2 = utils.returnartists()
     if request.method=="GET":
-        return render_template("artist.html",dic=d2,stagename="artists")
+        return render_template("artist.html",dic=d2,stagename="artists",un=session['un'])
     else:
         person = request.form["button"]
         if utils.validate(person):
@@ -57,7 +74,11 @@ def artist(name=""):
 # define a function to be run everytime someone goes to your app
 #      returns a string that represents the homepage
 def home():
-    return render_template("home.html")
+    if 'un' in session and session['un'] != 0:
+        user = session['un']
+        return render_template("home.html",un=user)
+    else:
+        return render_template("home.html")
 
 if __name__ == "__main__":
     app.debug = True
