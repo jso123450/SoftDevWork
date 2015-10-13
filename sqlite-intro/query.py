@@ -4,7 +4,7 @@ conn = sqlite3.connect("demo.db")
 c = conn.cursor()
 
 q = """
-SELECT people.name,classes.name,grade FROM people.classes WHERE
+SELECT people.name,classes.name,grade FROM people,classes WHERE
 people.id = classes.id and grade > 90
 """
 
