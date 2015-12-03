@@ -23,11 +23,11 @@ var moveToDL = function moveToDL(n){
     doneItem.innerHTML = tdlItem.innerHTML;
     dl.appendChild(doneItem);
     removeFromTDL(n);
-    //var dlItems = donelist.children;
-    //var length = dlItems.length;
-    //dlItems[length-1].addEventListener("click",moveToTDL(length-1));
+    var dlItems = donelist.children;
+    var length = dlItems.length;
+    dlItems[length-1].addEventListener("click",function(){moveToTDL(length-1)});
 };
-/*
+
 var removeFromDL = function removeFromDL(n){
     var items = donelist.children;
     items[n].remove();
@@ -40,10 +40,10 @@ var moveToTDL = function moveToTDL(n){
     todoItem.innerHTML = dlItem.innerHTML;
     tdl.appendChild(todoItem);
     removeFromDL(n);
-    //var tdlItems = todolist.children;
-    //var length = tdlItems.length;
-    //tdlItems[length-1].addEventListener("click",moveToDL(length-1));
-}*/
+    var tdlItems = todolist.children;
+    var length = tdlItems.length;
+    tdlItems[length-1].addEventListener("click",function(){moveToDL(length-1)});
+}
 
 var buttonCallBack = function buttonCallBack(e){
     console.log(e);
