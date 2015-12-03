@@ -57,15 +57,37 @@ var highlightedItem = 0;
 
 var highlightButtonCallBack = function highlightButtonCallBack(){
     var tdlItems = todolist.children;
-    tdlItems[highlightedItem].classList.toggle("liRed");
-    if (highlightedItem > 0){
-	tdlItems[highlightedItem].classList.toggle("liRed");
+    console.log(highlightedItem);
+    if (tdlItems.length > 0){
+	if (highlightedItem < tdlItems.length){
+	    tdlItems[highlightedItem].classList.toggle("liRed");
+	};
+	if (highlightedItem > 0){
+	    tdlItems[highlightedItem-1].classList.toggle("liRed");
+	};
+	if (highlightedItem <= tdlItems.length-1){
+	    highlightedItem++;
+	}
+	else {
+	    highlightedItem = 0;
+	};
     };
-    highlightedItem++;
 };
 
 var addButton = document.getElementById("addButton");
 addButton.addEventListener("click",buttonCallBack);
 
 var highlightButton = document.getElementById("highlightButton");
-highlightButton.addEventListener("click",highlightButtonCallBack());
+highlightButton.addEventListener("click",function(){highlightButtonCallBack()});
+
+var autoHighlight = setInterval(highlightButtonCallBack,1000);
+
+var startButton = document.querySelector("#startButton");
+startButton.addEventListener("click",function(){
+    autoHighlight = setInterval(highlightButtonCallBack,1000);
+});
+
+var stopButton = document.querySelector("#stopButton");
+stopButton.addEventListener("click",function(e){
+    clearInterval(autoHighlight);
+});
