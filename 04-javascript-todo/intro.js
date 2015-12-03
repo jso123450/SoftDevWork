@@ -26,7 +26,7 @@ var moveToDL = function moveToDL(n){
     //var length = dlItems.length;
     //dlItems[length-1].addEventListener("click",moveToTDL(length-1));
 };
-
+/*
 var removeFromDL = function removeFromDL(n){
     var items = donelist.children;
     items[n].remove();
@@ -42,16 +42,15 @@ var moveToTDL = function moveToTDL(n){
     //var tdlItems = todolist.children;
     //var length = tdlItems.length;
     //tdlItems[length-1].addEventListener("click",moveToDL(length-1));
-}
+}*/
 
-var addInput = function addInput(e){
+var buttonCallBack = function buttonCallBack(e){
     console.log(e);
     console.log(this);
     var input = document.getElementById("TDLinput");
     var text = input.value;
-    e.stopImmediatePropagation();
     addToTDL(text);
 };
 
 var addButton = document.getElementById("addButton");
-addButton.addEventListener("click",addInput);
+addButton.addEventListener("click",buttonCallBack);
