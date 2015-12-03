@@ -7,7 +7,7 @@ var addToTDL = function addToTDL(s){
     tdl.appendChild(n);
     var tdlItems = todolist.children;
     var length = tdlItems.length;
-    tdlItems[length-1].addEventListener("click",moveToDL(length-1));
+    tdlItems[length-1].addEventListener("click", function(){moveToDL(length-1)});
 };
 
 var removeFromTDL = function removeFromTDL(n){
@@ -16,6 +16,7 @@ var removeFromTDL = function removeFromTDL(n){
 };
 
 var moveToDL = function moveToDL(n){
+    console.log("hello")
     var tdlItem = document.getElementsByTagName("li")[n];
     var dl = document.getElementById("donelist");
     var doneItem = document.createElement("li");
